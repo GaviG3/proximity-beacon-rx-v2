@@ -1,20 +1,20 @@
 radio.onReceivedString(function (receivedString) {
     signal = radio.receivedPacket(RadioPacketProperty.SignalStrength)
-    led.plotBarGraph(
-    Math.map(signal, -95, -42, 0, 9),
-    9
-    )
     if (signal < -128) {
         music.stopAllSounds()
-    } else if (signal < -90) {
+        basic.showIcon(IconNames.No)
+    } else if (signal < -81) {
         music.playTone(262, music.beat(BeatFraction.Half))
         basic.pause(1000)
-    } else if (signal < -50) {
+        basic.showIcon(IconNames.Square)
+    } else if (signal < -75) {
         music.playTone(349, music.beat(BeatFraction.Half))
         basic.pause(300)
+        basic.showIcon(IconNames.Diamond)
     } else if (signal < -28) {
         music.playTone(988, music.beat(BeatFraction.Half))
         basic.pause(75)
+        basic.showIcon(IconNames.SmallDiamond)
     }
 })
 let signal = 0
